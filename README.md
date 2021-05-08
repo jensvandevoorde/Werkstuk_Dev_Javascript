@@ -1,3 +1,3 @@
 # Werkstuk_Dev_Javascript
 
-# Develop branch
+# Develop branch for development
