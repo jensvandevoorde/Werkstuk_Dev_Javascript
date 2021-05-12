@@ -22,14 +22,18 @@ function USMarket() {
 
 // adapter interface
 
-function monetaryAdapter(currency) {
+function monetaryAdapter() {
   let us = new USMarket();
+  console.log(EUMarket.cost);
 
-  return {
-      request: function(cost) {
-          return us.calculate(cost)();
-      }
-  };
+  // return {
+  //     request: function() {
+  //         return us.calculate(cost)();
+  //     }
+  // };
+  this.request = function(){
+    return us.calculate(2)();
+  }
 }
 
 
