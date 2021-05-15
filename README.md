@@ -3,3 +3,5 @@
 # Develop branch for development
 
 # Adapter design pattern omvormen in functional programming
+
+# Algorythm
