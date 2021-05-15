@@ -1,50 +1,44 @@
-// old interface
+//FUNCTIONAL PROGRAMMING - ADAPTER DESIGN PATTERN
 
+// Old interface
 function EUMarket() {
-  const cost = 1.25;
-  this.maskCosts = function() {
+  return function (cost) {
       return "Mask costs €" + cost;
   }
 }
 
-// new interface
+// New interface
+function USMarket(value) {
+ const dollarValue = value;
 
-function USMarket() {
-  const dollarValue = 1.21;
-
-  this.calculate = function(cost) { 
-    const costInDollar = cost * dollarValue;
-    return function maskInDollar() {
-      return "Mask costs $" + costInDollar;
-    }
+  return function (cost) {
+      return "Mask costs $" + cost * dollarValue;
   };
 }
 
-// adapter interface
-
-function monetaryAdapter(currency) {
-  let us = new USMarket();
-
-  return {
-      request: function(cost) {
-          return us.calculate(cost)();
-      }
-  };
+// Adapter interface
+function monetaryAdapter(value) {
+  const calculateCostOfUSMarket = USMarket(value);
+      
+  return function (cost) {
+      const calculatedCost = calculateCostOfUSMarket(cost);
+      return calculatedCost;
+  }
 }
-
 
 function run() {
-  const eu = new EUMarket();
-  //const adaptee = new USMarket()
-  const adapter = new monetaryAdapter();
+  const costOfEUMarket = 1.25;
+  const value = 1.21;
 
-  // original shipping object and interface
-  let cost = eu.maskCosts();
+  // Original mask cost in euro and interface
+  let cost = EUMarket()(costOfEUMarket);
   console.log(cost);
 
-  // new shipping object with adapted interface
-  cost = adapter.request();
+  // New mask cost in dollar with adapted interface
+  cost = monetaryAdapter(value)(costOfEUMarket);
   console.log(cost);
 }
 
 run();
+
+//Joni
