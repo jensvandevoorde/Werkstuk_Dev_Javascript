@@ -17,52 +17,47 @@ function monetaryAdapter() {
 monetaryAdapter(); */
 
 // old interface
-
 function EUMarket() {
+    //nt FP
     const cost = 1.25;
-    this.maskCosts = function () {
+    this.mCost = cost;
+
+    return function () {
         return "Mask costs €" + cost;
     }
-    this.mCost = cost;
 }
 
 // new interface
+function USMarket(value) {
+   const dollarValue = value;
 
-function USMarket() {
-    const dollarValue = 1.21;
-
-    this.calculate = function (cost) {
-        const costInDollar = cost * dollarValue;
-        return function maskInDollar() {
-            return "Mask costs $" + costInDollar;
-        }
+    return function (cost) {
+        return "Mask costs $" + cost * dollarValue;
     };
 }
 
 // adapter interface
+function monetaryAdapter() {
+    let calculateCostOfUSMarket = USMarket();
 
-function monetaryAdapter(currency) {
-    let us = new USMarket();
-    let eu = new EUMarket();
-    return {
-        request: function () {
-            return us.calculate(eu.mCost)();
-        }
-    };
+    return function (cost) {
+        const calculatedCost = calculateCostOfUSMarket();
+        return calculatedCost;
+    }
 }
-
 
 function run() {
     const eu = new EUMarket();
-    //const adaptee = new USMarket()
+    const adaptee = new USMarket()
     const adapter = new monetaryAdapter();
 
     // original shipping object and interface
-    let cost = eu.maskCosts();
+    let cost = eu();
     console.log(cost);
 
     // new shipping object with adapted interface
-    cost = adapter.request();
+    cost = USMarket(1.21)(1.25);
+    cost = adapter(1.25);
     console.log(cost);
 }
 
