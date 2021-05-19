@@ -29,7 +29,7 @@ function monetaryAdapter(value) {
   }
 }
 
-function run() {
+function run() {    // niet-pure functie
   let allPrices = [];
   const costOfEUMarket = 1.25;
   const value = 1.21;
@@ -41,19 +41,19 @@ function run() {
   allPrices.push(value, value2, value3);
 
 
-  console.log(cost);
-  console.log(allPrices);
+  console.log(cost);    // side-effect
+  console.log(allPrices);   // side-effect
 
   // New mask cost in dollar with adapted interface
   cost = monetaryAdapter(value)(costOfEUMarket);
-  let totalCost = monetaryAdapter(sumArray(allPrices))(costOfEUMarket);
-  console.log(cost);
-  console.log(totalCost);
+  let totalCost = monetaryAdapter(sumArray(allPrices))(costOfEUMarket);   // side-effect
+  console.log(cost);    // side-effect
+  console.log(totalCost);   //side-effect
 }
 
 run();
 
-//Joni
+//JAVASCRIPT - ALGORYTHM
 
 function sumArray(ar) {
   let sum = 0;
