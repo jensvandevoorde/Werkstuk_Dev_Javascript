@@ -17,8 +17,6 @@ function USMarket(value) {
   };
 }
 
-
-
 // Adapter interface
 function monetaryAdapter(value) {
   const calculateCostOfUSMarket = USMarket(value);

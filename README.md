@@ -1,10 +1,8 @@
-# Werkstuk_Dev_Javascript
+# Werkstuk Development IV - Javascript gedeelte
 
-# Develop branch for development
+# Deel 2 : Adapter design pattern omvormen in functional programming
 
-# Adapter design pattern omvormen in functional programming
-
-# Algorythm 
+# Deel 3 : Algorythm 
 Link to used algorithm
 
  https://levelup.gitconnected.com/javascript-algorithm-calculate-sum-of-all-numbers-in-a-jagged-array-94230951d726
